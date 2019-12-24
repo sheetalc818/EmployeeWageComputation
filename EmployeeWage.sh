@@ -6,19 +6,23 @@ echo "-----Welcome To Employee wage Computation-----"
 #---Checking for Employee Present or not---
 
 #Check Emp
-checkEmp=$((RANDOM%2))
+checkEmp=$((RANDOM%3))
 
 #Variables
-isPresent=1;
+isPartTime=1;
+isFullTime=2;
 wagePerHr=20;
-empHr=8;
 
 #---Calculating Employee Daily Wage who present---
-if [ $checkEmp -eq $isPresent ]
+if [ $checkEmp -eq $isFullTime ]
 then
-   echo "Employee is Present"
-	echo "salary=$(( $wagePerHr*$empHr ))"
+   empHr=8;
+elif [ $checkEmp -eq $isPartTime ]
+then
+   empHr=4;
 else
-   echo "Employee is Absent"
-	echo "salary=0"
+	empHr=0;
 fi
+
+salary=$(( $wagePerHr*$empHr ))
+echo "Salary is : $salary"
