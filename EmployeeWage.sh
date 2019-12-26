@@ -13,16 +13,19 @@ isPartTime=1;
 isFullTime=2;
 wagePerHr=20;
 
-#---Calculating Employee Daily Wage who present---
-if [ $checkEmp -eq $isFullTime ]
-then
-   empHr=8;
-elif [ $checkEmp -eq $isPartTime ]
-then
-   empHr=4;
-else
-	empHr=0;
-fi
+#---Solving using Case---
+case $checkEmp in
+   $isFullTime)
+            empHr=8
+            ;;
+   $isPartTime)
+            empHr=4
+            ;;
+   *)
+            empHr=0
+				;;
+esac
 
+#Calculating salary
 salary=$(( $wagePerHr*$empHr ))
 echo "Salary is : $salary"
