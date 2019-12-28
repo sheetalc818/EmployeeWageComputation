@@ -12,20 +12,30 @@ checkEmp=$((RANDOM%3))
 isPartTime=1;
 isFullTime=2;
 wagePerHr=20;
+workingDays=20;
 
-#---Solving using Case---
-case $checkEmp in
-   $isFullTime)
-            empHr=8
-            ;;
-   $isPartTime)
-            empHr=4
-            ;;
-   *)
-            empHr=0
-				;;
-esac
+#Calculating salary for 20 days
+
+for (( day=1; day<=$workingDays; day++ ))
+do
+	#---Solving using Case---
+	case $checkEmp in
+   					$isFullTime)
+            						empHr=8
+            						;;
+   					$isPartTime)
+            						empHr=4
+            						;;
+   					*)
+            						empHr=0
+										;;
+	esac
 
 #Calculating salary
 salary=$(( $wagePerHr*$empHr ))
 echo "Salary is : $salary"
+
+#Calculating Total salary
+totalSalary=$(( $totalSalary + $salary ))
+echo "Total Salary is : $totalSalary"
+done
