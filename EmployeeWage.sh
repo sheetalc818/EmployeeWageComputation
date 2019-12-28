@@ -1,49 +1,37 @@
 #!/bin/bash -x
 
-#Print Welcome message
-echo "-----Welcome To Employee wage Computation-----"
+#CONSTANTS FOR THE PROGRAMS
+IS_PART_TIME=1;
+IS_FULL_TIME=2;
+MAX_HRS_IN_MONTH=4;
+EMP_RATE_PER_HR=20;
+NUM_WORKING_DAYS=20;
 
-#---Checking for Employee Present or not---
-
-#Check Emp
-checkEmp=$((RANDOM%3))
-
-#Variables
-isPartTime=1;
-isFullTime=2;
-wagePerHr=20;
-workingDays=20;
-totalWorkingDays=0;
+#VARIABLES
 totalEmpHr=0;
+totalWorkingDays=0;
 
-#CONSTANT
-MAX_HRS_IN_MONTH=10;
+#FUNCTION
+getWorkingHours() 
+{
+	case $1 in
+				$IS_FULL_TIME)
+					workHours=8
+					;;
+				$IS_PART_TIME)
+					workHours=4
+					;;
+			   *)
+					workHours=0
+					;;
+	esac
+	echo $workHours
+}
 
-while [[ $totalEmpHr -lt $MAX_HRS_IN_MONTH && $totalWorkingDays -lt $workingDays ]]
+while [[ $totalEmpHr -lt $MAX_HRS_IN_MONTH && $totalWorkingDays -lt $NUM_WORKING_DAYS ]]
 do
 	((totalWorkingDays++))
-
-	#Check Emp
-	checkEmp=$((RANDOM%3))
-
-	#---Solving using Case---
-	case $checkEmp in
-   					$isFullTime)
-            						empHr=8
-            						;;
-   					$isPartTime)
-            						empHr=4
-            						;;
-   					*)
-            						empHr=0
-										;;
-	esac
-	#Calculating Total Hrs of Employee
-	totalEmpHr=$(( $totalEmpHr+$empHr ))
-
+	workHours=$( getWorkingHours $((RANDOM%3)) )
+	totalWorkHours=$(($totalWorkHours+$workHours))
 done
-
-#Calculating Total salary
-totalSalary=$(( $totalEmpHr*$wagePerHr ))
-echo "Total Salary is : $totalSalary"
-
+totalSalary=$(($totalWorkHours*$EMP_RATE_PER_HR));
