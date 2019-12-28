@@ -13,11 +13,19 @@ isPartTime=1;
 isFullTime=2;
 wagePerHr=20;
 workingDays=20;
+totalWorkingDays=0;
+totalEmpHr=0;
 
-#Calculating salary for 20 days
+#CONSTANT
+MAX_HRS_IN_MONTH=10;
 
-for (( day=1; day<=$workingDays; day++ ))
+while [[ $totalEmpHr -lt $MAX_HRS_IN_MONTH && $totalWorkingDays -lt $workingDays ]]
 do
+	((totalWorkingDays++))
+
+	#Check Emp
+	checkEmp=$((RANDOM%3))
+
 	#---Solving using Case---
 	case $checkEmp in
    					$isFullTime)
@@ -30,12 +38,12 @@ do
             						empHr=0
 										;;
 	esac
+	#Calculating Total Hrs of Employee
+	totalEmpHr=$(( $totalEmpHr+$empHr ))
 
-#Calculating salary
-salary=$(( $wagePerHr*$empHr ))
-echo "Salary is : $salary"
+done
 
 #Calculating Total salary
-totalSalary=$(( $totalSalary + $salary ))
+totalSalary=$(( $totalEmpHr*$wagePerHr ))
 echo "Total Salary is : $totalSalary"
-done
+
