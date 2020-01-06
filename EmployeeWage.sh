@@ -8,17 +8,18 @@ echo "-----Welcome To Employee wage Computation-----"
 #Check Emp
 checkEmp=$((RANDOM%3))
 
-#Variables
+#CONSTANT
 isPartTime=1;
 isFullTime=2;
 wagePerHr=20;
 workingDays=20;
+MAX_HRS_IN_MONTH=100;
+
+#VARIABLES
 totalWorkingDays=0;
 totalEmpHr=0;
 
-#CONSTANT
-MAX_HRS_IN_MONTH=10;
-
+#Checking for Emp Hrs
 while [[ $totalEmpHr -lt $MAX_HRS_IN_MONTH && $totalWorkingDays -lt $workingDays ]]
 do
 	((totalWorkingDays++))
@@ -36,7 +37,7 @@ do
             						;;
    					*)
             						empHr=0
-										;;
+							;;
 	esac
 	#Calculating Total Hrs of Employee
 	totalEmpHr=$(( $totalEmpHr+$empHr ))
