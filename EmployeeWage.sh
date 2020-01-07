@@ -50,5 +50,12 @@ done
 
 #Calculating Total salary
 totalSalary=$(calDailyWage $totalWorkHours);
+
+#Storing totatlSalary in Array at 0th position
 empWage+=${totalSalary}
+
+#Displaying Daily wage with total wage
 echo "Daily wage with total wage :" ${empWage[@]}
+
+#Displaying days
+echo "Days : " ${!empWage[@]}
