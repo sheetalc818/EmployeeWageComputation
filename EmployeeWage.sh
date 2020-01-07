@@ -11,6 +11,9 @@ NUM_WORKING_DAYS=20;
 totalEmpHr=0;
 totalWorkingDays=0;
 
+#Array
+declare -a empWage
+
 #FUNCTION-To get Working hrs
 getWorkingHours() 
 {
