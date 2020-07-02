@@ -19,14 +19,14 @@ getWorkingHours()
 {
 	case $1 in
 				$IS_FULL_TIME)
-								workHours=8
-								;;
+						workHours=8
+						;;
 				$IS_PART_TIME)
-								workHours=4
-								;;
-			   *)
-								workHours=0
-								;;
+						workHours=4
+						;;
+			   	*)
+						workHours=0
+						;;
 	esac
 	echo $workHours
 }
